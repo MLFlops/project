@@ -1,19 +1,16 @@
 stages:
-  fetch_data:
-    cmd: dvc pull -r myremote
-    deps:
-      - dvc.yaml
+  fetch_drive_data:
+    cmd: dvc pull -r drive
 
   generate_data:
     cmd: python generate_data.py
     deps:
       - generate_data.py
-    outs:
+    outs: 
       - data/dummy_sensor_data.csv
 
-  upload_to_drive:
-    cmd: dvc push -r myremote
+  upload_drive_data:
+    cmd: dvc push -r drive
     deps:
       - data/dummy_sensor_data.csv
     outs: []
-   
