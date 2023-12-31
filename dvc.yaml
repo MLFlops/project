@@ -6,8 +6,6 @@ stages:
     cmd: python generate_data.py
     deps:
       - generate_data.py
-    outs: 
-      - data/dummy_sensor_data.csv
 
   upload_drive_data:
     cmd: dvc push -r drive
