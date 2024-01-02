@@ -1,0 +1,5 @@
+outs:
+- md5: 655149a2daf2b69b8a086778da346fce
+  size: 2626
+  hash: md5
+  path: generate_data.py

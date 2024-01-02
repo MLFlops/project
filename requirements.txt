@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 scikit-learn
 pandas
 seaborn
@@ -8,3 +9,15 @@ gdown
 numpy
 mlflow
 flask
+=======
+scikit-learn
+pandas
+seaborn
+matplotlib
+dvc
+dvc-gdrive
+gdown
+numpy
+mlflow
+flask
+>>>>>>> 5b63441dd995b39145d0fd727fb835c7662ccd6d

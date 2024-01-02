@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  fetch_drive_data:
+    cmd: dvc pull -r drive
+  generate_data:
+    cmd: python generate_data.py
+    deps:
+    - path: generate_data.py
+      hash: md5
+      md5: 655149a2daf2b69b8a086778da346fce
+      size: 2626
+  upload_drive_data:
+    cmd: dvc push -r drive
+    deps:
+    - path: data/dummy_sensor_data.csv
+      hash: md5
+      md5: 4d60f91ae3384e31f4acf151c43fa149
+      size: 190029

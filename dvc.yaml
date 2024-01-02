@@ -1,0 +1,14 @@
+stages:
+  fetch_drive_data:
+    cmd: dvc pull -r drive
+
+  generate_data:
+    cmd: python generate_data.py
+    deps:
+      - generate_data.py
+
+  upload_drive_data:
+    cmd: dvc push -r drive
+    deps:
+      - data/dummy_sensor_data.csv
+    outs: []
