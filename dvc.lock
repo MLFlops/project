@@ -9,6 +9,7 @@ stages:
       hash: md5
       md5: 655149a2daf2b69b8a086778da346fce
       size: 2626
+
   upload_drive_data:
     cmd: dvc push -r drive
     deps:
@@ -16,3 +17,4 @@ stages:
       hash: md5
       md5: 4d60f91ae3384e31f4acf151c43fa149
       size: 190029
+

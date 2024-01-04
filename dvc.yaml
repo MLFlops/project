@@ -1,6 +1,6 @@
 stages:
   fetch_drive_data:
-    cmd: dvc pull -r drive
+    cmd: dvc pull -r drive 
 
   generate_data:
     cmd: python generate_data.py
