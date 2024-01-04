@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/b745a2375ea444a98f757db61c8842b4/artifacts
+end_time: 1704380707683
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b745a2375ea444a98f757db61c8842b4
+run_name: RandomForestRegressionRun
+run_uuid: b745a2375ea444a98f757db61c8842b4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704380698164
+status: 3
+tags: []
+user_id: bisma

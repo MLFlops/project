@@ -1,0 +1,58 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Maintenance - Parameter Selection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predictive Maintenance - Parameter Selection</h1>
+    <form action="/predict" method="get">
+        <div class="form-group">
+            <label for="timestamp">Timestamp:</label>
+            <input type="text" class="form-control" id="timestamp" name="timestamp" required>
+        </div>
+
+        <div class="form-group">
+            <label for="machine_id">Machine ID:</label>
+            <select class="form-control" id="machine_id" name="machine_id" required>
+                <option value="Machine_1">Machine 1</option>
+                <option value="Machine_2">Machine 2</option>
+                <option value="Machine_3">Machine 3</option>
+                <option value="Machine_4">Machine 4</option>
+                <option value="Machine_5">Machine 5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sensor_id">Sensor ID:</label>
+            <select class="form-control" id="sensor_id" name="sensor_id" required>
+                <option value="Sensor_1">Sensor 1</option>
+                <option value="Sensor_2">Sensor 2</option>
+                <option value="Sensor_3">Sensor 3</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+</body>
+</html>
