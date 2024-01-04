@@ -20,7 +20,7 @@ jobs:
 
     - name: Install DVC
       run: |
-        pip install dvc
+        pip install dvc-gdrive
         dvc pull -r drive
 
     - name: Setup DVC
