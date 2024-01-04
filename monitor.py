@@ -36,7 +36,7 @@ def load_latest_model():
     if not runs.empty:
         run_id = runs.iloc[0]["run_id"]
         model = mlflow.sklearn.load_model(f"runs:/{run_id}/best_model")
-        return model
+        return model, run_id
     else:
         raise ValueError("No runs found in MLflow.")
 
@@ -61,6 +61,17 @@ def save_metrics_to_csv(metrics, csv_file):
     else:
         metrics.to_csv(csv_file, mode='a', header=False, index=False)
 
+def get_best_mae_from_mlflow(run_id):
+    """Retrieve the 'best_mae' metric from MLflow."""
+    mlflow.set_tracking_uri("http://127.0.0.1:5000")
+    client = mlflow.tracking.MlflowClient()
+
+    # Fetch the metric from the specified run
+    metrics = client.get_run(run_id).data.metrics
+    best_mae = metrics.get("best_mae", None)
+
+    return best_mae
+
 def monitor(model, X, y, threshold_mae=1.0, threshold_mse=1.0):
     """Monitor model performance and print if degraded."""
     mae, mse = calculate_metrics(model, X, y)
@@ -71,7 +82,13 @@ def monitor(model, X, y, threshold_mae=1.0, threshold_mse=1.0):
     print("\nCurrent Metrics:")
     print(metrics_df)
 
-    if mae > threshold_mae or mse > threshold_mse:
+    # Retrieve the 'best_mae' metric from MLflow
+    _, run_id = load_latest_model()
+    best_mae_from_mlflow = get_best_mae_from_mlflow(run_id)
+
+    print(f"\nBest MAE from MLflow: {best_mae_from_mlflow}")
+
+    if mae > threshold_mae or mse > threshold_mse or (best_mae_from_mlflow is not None and mae > best_mae_from_mlflow):
         print("\nModel performance degraded!")
     else:
         print("\nModel performance is within acceptable limits.")
@@ -80,7 +97,7 @@ def monitor(model, X, y, threshold_mae=1.0, threshold_mse=1.0):
 
 if __name__ == "__main__":
     # Load the latest model from MLflow
-    model = load_latest_model()
+    model, _ = load_latest_model()
 
     # Load the latest data
     data_file_path = 'dummy_sensor_data.csv'
