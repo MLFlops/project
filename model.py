@@ -74,7 +74,7 @@ if __name__ == "__main__":
     X_train, X_val, y_train, y_val = preprocess_data(X, y)
 
     # Step 4: Train model with optimized hyperparameters
-    best_params = {'n_estimators': 100, 'max_depth': 5}  # You can replace this with the best_params obtained from grid search
+    best_params = {'n_estimators': 100, 'max_depth': 5}  
     trained_model = train_model(X_train, X_val, y_train, y_val, **best_params)
 
     # Step 5: Grid Search for hyperparameter tuning
