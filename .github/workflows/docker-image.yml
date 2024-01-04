@@ -1,0 +1,60 @@
+name: Predictive Maintenance Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  data_acquisition:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install DVC
+      run: |
+        pip install dvc
+        dvc pull -r drive
+
+    - name: Setup DVC
+      run: |
+        dvc remote add -d myremote gdrive://1bpRgY8LO1KjOL3NuHsydEAeH01cUYzY-
+    - name: Pulling data from dvc
+      run: |
+        dvc --version
+        dvc repro --force
+    - name: Save new files back to github repo
+      run: |
+        git add dvc.lock data/dummy_sensor_data.csv.dvc
+        git commit -m "Update .dvc files after running dvc repro"
+        git push origin main
+
+  model_training:
+    runs-on: ubuntu-latest
+    needs: data_acquisition
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Dependencies
+      run: pip install -r requirements.txt 
+
+    - name: Train Model and Track with MLflow
+      run: python model.py  
+
+
+
+
