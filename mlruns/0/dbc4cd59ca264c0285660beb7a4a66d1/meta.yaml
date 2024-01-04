@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/dbc4cd59ca264c0285660beb7a4a66d1/artifacts
+end_time: 1704203808540
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dbc4cd59ca264c0285660beb7a4a66d1
+run_name: RandomForestRegressionRun
+run_uuid: dbc4cd59ca264c0285660beb7a4a66d1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704203793007
+status: 3
+tags: []
+user_id: user 1

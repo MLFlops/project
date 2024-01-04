@@ -7,12 +7,14 @@ stages:
     deps:
     - path: generate_data.py
       hash: md5
-      md5: 7b4a0d6d1bb2638c8e7e3172e64a8c46
-      size: 2631
+      md5: 655149a2daf2b69b8a086778da346fce
+      size: 2626
+
   upload_drive_data:
     cmd: dvc push -r drive
     deps:
     - path: data/dummy_sensor_data.csv
       hash: md5
-      md5: 3ab5040023f585636fc3736b21c10f9d
-      size: 211702
+      md5: 4d60f91ae3384e31f4acf151c43fa149
+      size: 190029
+
