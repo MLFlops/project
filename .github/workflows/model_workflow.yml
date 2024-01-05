@@ -21,7 +21,6 @@ jobs:
     - name: Install DVC
       run: |
         pip install dvc-gdrive
-        dvc pull -r drive
 
     - name: Pull data with DVC
       env:
