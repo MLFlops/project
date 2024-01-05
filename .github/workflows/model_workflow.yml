@@ -73,6 +73,19 @@ jobs:
     - name: Stop mlflow ui
       run: pkill -f "mlflow ui --port 5001"
 
+    - name: DockerHub Login
+      uses: docker/login-action@v3
+      with:
+        username: mlflops
+        password: mlflops123
+        
+    - name: Build and push Docker Image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: mlflops/flask_app:latest
+
 
 
 
