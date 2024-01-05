@@ -35,7 +35,7 @@ jobs:
       
     - name: Save new files back to github repo & dvc
       run: |
-          git add data/dummy_sensor_data.csv.dvc
+          git add dummy_sensor_data.csv.dvc
           git diff --quiet --exit-code || git commit -m "dvc metadata"
           dvc add dummy_sensor_data.csv
           git add dummy_sensor_data.csv.dvc
