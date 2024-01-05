@@ -33,7 +33,7 @@ jobs:
       run: |
         python generate_data.py
       
-    - name: Save new files back to github repo & dvc
+    #- name: Save new files back to github repo & dvc
       # run: |
           # dvc add dummy_sensor_data.csv
           # git diff --quiet --exit-code || git commit -m "Comitting and Pushing New Data Changes"
