@@ -23,9 +23,12 @@ jobs:
         pip install dvc-gdrive
         dvc pull -r drive
 
-    - name: Setup DVC
+    - name: Pull data with DVC
+      env:
+        GDRIVE_CREDENTIALS_DATA: "${{ secrets.DVC_GDRIVE_TOKEN }}"
       run: |
-        dvc remote add -d myremote gdrive://1bpRgY8LO1KjOL3NuHsydEAeH01cUYzY-
+        dvc pull
+        
     - name: Pulling data from dvc
       run: |
         dvc --version
