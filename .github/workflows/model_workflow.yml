@@ -26,6 +26,8 @@ jobs:
       env:
         GDRIVE_CREDENTIALS_DATA: "${{ secrets.DVC_GDRIVE_TOKEN }}"
       run: |
+        echo "${{ secrets.DVC_GDRIVE_TOKEN }}" > gdrive_token.json
+        dvc remote modify drive gdrive_credentials gdrive_user_credentials.json
         dvc pull
         
     - name: Pulling data from dvc
