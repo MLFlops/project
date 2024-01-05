@@ -65,6 +65,6 @@ end_date = datetime(2023, 1, 10)
 dummy_data = generate_dummy_data(start_date, end_date, num_machines=5, num_sensors=3)
 
 # Save dummy data to CSV file
-dummy_data.to_csv('data/dummy_sensor_data.csv', index=False)
+dummy_data.to_csv('dummy_sensor_data.csv', index=False)
 
 generate_and_append_data(data_file_path)
