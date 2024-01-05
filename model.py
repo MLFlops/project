@@ -64,7 +64,7 @@ def log_mlflow(run_name, params, best_model, best_mae, X_val, y_val):
 
 if __name__ == "__main__":
     # Step 1: Load data
-    file_path = 'data/dummy_sensor_data.csv'  
+    file_path = 'dummy_sensor_data.csv'  
     data = load_data(file_path)
 
     # Step 2: Feature Engineering
