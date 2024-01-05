@@ -26,6 +26,9 @@ jobs:
       run: |
         git config --global user.name "mlflops"
 
+    - name: Install Dependencies
+      run: pip install -r requirements.txt 
+
     - name: generate data
       run: |
         python generate_data.py
