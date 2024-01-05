@@ -36,7 +36,6 @@ jobs:
     - name: Save new files back to github repo & dvc
       run: |
           dvc add dummy_sensor_data.csv
-          git add data.dvc
           git diff --quiet --exit-code || git commit -m "Comitting and Pushing New Data Changes"
           git push origin main
 
