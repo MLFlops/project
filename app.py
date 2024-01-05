@@ -7,7 +7,7 @@ from sklearn.compose import ColumnTransformer
 app = Flask(__name__)
 
 # Load the pre-trained model
-model_path = "D:\\mlflops\\project\\mlartifacts\\0\\dbc4cd59ca264c0285660beb7a4a66d1\\artifacts\\best_model"
+model_path = "/app/mlartifacts/0/dbc4cd59ca264c0285660beb7a4a66d1/artifacts/best_model"
 loaded_model = mlflow.pyfunc.load_model(model_path)
 
 def feature_engineering(data):
@@ -63,7 +63,13 @@ def predict_endpoint():
         day_of_week = timestamp.dayofweek
         month = timestamp.month
         
-        # Machine_ID_Machine_1	Machine_ID_Machine_2	Machine_ID_Machine_3	Machine_ID_Machine_4	Machine_ID_Machine_5	Sensor_ID_Sensor_1	Sensor_ID_Sensor_2	Sensor_ID_Sensor_3	Hour	DayOfWeek	Month
+
+        # # Preprocess the input data
+        # X_processed = preprocess_data(X)
+        # print(X_processed)
+
+        # # Make the prediction using the pre-trained model
+        # prediction = predict(X)#[0]
 
         # Create a DataFrame with the input values
         data = pd.DataFrame({
@@ -80,6 +86,12 @@ def predict_endpoint():
             'Month': [month]
         })
         
+        # # Extract features using feature_engineering function
+        # X = feature_engineering(pd.DataFrame({
+        # 'Timestamp': [timestamp],
+        # 'Machine_ID': [machine_id],
+        # 'Sensor_ID': [sensor_id]
+        # }))
 
         # Make the prediction using the pre-trained model
         #prediction = predict1(X_processed)#[0]
