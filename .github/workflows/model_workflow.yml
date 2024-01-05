@@ -24,24 +24,20 @@ jobs:
 
     - name: Set Git user information
       run: |
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Actions"
+        git config --global user.name "mlflops"
 
-    - name: Pull data with DVC
-      env:
-        GDRIVE_CREDENTIALS_DATA: ${{ secrets.DVC_GDRIVE_TOKEN }}
+    - name: generate data
       run: |
-        dvc pull
-        
-    - name: Pulling data from dvc
+        python generate_data.py
+      
+    - name: Save new files back to github repo & dvc
       run: |
-        dvc --version
-        dvc repro --force
-    - name: Save new files back to github repo
-      run: |
-        git add dvc.lock data/dummy_sensor_data.csv.dvc
-        git commit -m "Update .dvc files after running dvc repro"
-        git push origin main
+          git add data/dummy_sensor_data.csv.dvc
+          git diff --quiet --exit-code || git commit -m "dvc metadata"
+          dvc add data/dummy_sensor_data.csv
+          git add data/dummy_sensor_data.csv.dvc
+          git diff --quiet --exit-code || git commit -m "Comitting and Pushing New Data Changes"
+          git push origin main
 
   model_training:
     runs-on: ubuntu-latest
@@ -59,8 +55,23 @@ jobs:
     - name: Install Dependencies
       run: pip install -r requirements.txt 
 
-    - name: Train Model and Track with MLflow
-      run: python model.py  
+    - name: Running MLFLOW
+      run: |
+        mlflow ui --port 5001 &
+
+    - name: Running Main (If its first time)
+      run: |
+        if [ ! -d ".pkl" ]; then
+        python model.py
+        fi
+
+    - name: Monitoring
+      run: |
+        python drift_monitor.py
+
+  
+    - name: Stop mlflow ui
+      run: pkill -f "mlflow ui --port 5001"
 
 
 
