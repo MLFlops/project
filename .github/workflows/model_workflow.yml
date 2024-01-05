@@ -58,7 +58,7 @@ jobs:
       run: |
         [ ! -d ".pkl" ] && python model.py
   
-    - name: Stop mlflow ui
+    - name: Stop mlflow
       run: pkill -f "mlflow ui --port 5001"
 
     - name: Monitoring
