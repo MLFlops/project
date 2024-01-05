@@ -37,8 +37,8 @@ jobs:
       run: |
           git add data/dummy_sensor_data.csv.dvc
           git diff --quiet --exit-code || git commit -m "dvc metadata"
-          dvc add data/dummy_sensor_data.csv
-          git add data/dummy_sensor_data.csv.dvc
+          dvc add dummy_sensor_data.csv
+          git add dummy_sensor_data.csv.dvc
           git diff --quiet --exit-code || git commit -m "Comitting and Pushing New Data Changes"
           git push origin main
 
